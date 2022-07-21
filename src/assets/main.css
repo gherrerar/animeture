@@ -130,7 +130,7 @@ body {
 .list .search-bar {
   position: sticky;
   position: -webkit-sticky;
-  top: 0;
+  top: -1px;
   padding: 2rem 0;
   width: min(75vw, 100vw - 4rem);
   background-color: rgba(13, 13, 13, 0.9);
