@@ -41,6 +41,11 @@ body {
   overflow-x: hidden;
 }
 
+.wrapper {
+  position: relative;
+  overflow-x: hidden;
+}
+
 .blurry-balls span {
   position: absolute;
   inset: 0 0 auto 0;
@@ -248,9 +253,12 @@ body {
   gap: 5rem;
   margin-block: 10rem 0;
 }
-.list .list-view #loading {
+.list .list-view #loading, .list .list-view #not-found {
   margin-inline: auto;
   width: max(80%, 20rem);
+}
+.list .list-view #not-found {
+  width: max(70%, 20rem);
 }
 .list .anime-shadow {
   position: absolute;

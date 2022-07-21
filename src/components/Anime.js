@@ -5,14 +5,14 @@ import useDimensions from "../hooks/useDimensions";
 export default ({ title, srcImg, score }) => {
     const componentRef = useRef();
     const { width: titleWdth, height } = useDimensions(componentRef);
-    const [translate, setTranslate] = useState(0)
+    const [translate, setTranslate] = useState(0);
 
     function animateText(e) {
         let parentWdth;
-        if (e.target.className == 'anime-cell--image') {
+        if (e.target.className == "anime-cell--image") {
             parentWdth = e.target.offsetWidth;
         }
-        setTranslate((titleWdth > parentWdth) ? titleWdth - parentWdth : 0);
+        setTranslate(titleWdth > parentWdth ? titleWdth - parentWdth : 0);
     }
     function returnText() {
         setTranslate(0);
@@ -31,10 +31,12 @@ export default ({ title, srcImg, score }) => {
                 loading="lazy"
                 alt={title}
             />
-            <div className="anime-cell--score">
-                <img src={icon} />
-                <span>{score}</span>
-            </div>
+            {score != null && (
+                <div className="anime-cell--score">
+                    <img src={icon} />
+                    <span>{score}</span>
+                </div>
+            )}
             <div className="anime-cell--title">
                 <p
                     className="anime-cell--text"

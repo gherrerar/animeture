@@ -10,6 +10,9 @@ export default () => {
     const [submit, setSubmit] = useState("");
     const { response: animes, isFetching } =
         (submit === "") ? useFetch("top/anime") : useFetch(`anime?q=${submit}`);
+    animes.sort((a, b) => {
+        return b.score - a.score
+    })
 
     function handleChange(e) {
         setInput(e.target.value);
@@ -17,6 +20,9 @@ export default () => {
     function handleSubmit(e) {
         e.preventDefault();
         setSubmit(input);
+    }
+    function reset(e) {
+        (e.target.value == '') && setSubmit('')
     }
 
     return (
@@ -28,6 +34,7 @@ export default () => {
                         <input
                             value={input}
                             onChange={handleChange}
+                            onKeyUp={reset}
                             placeholder="Pesquise por um Anime, p. ex. Naruto"
                         />
                     </div>
@@ -43,6 +50,15 @@ export default () => {
                         background="transparent"
                         speed="1"
                         loop
+                        autoplay
+                    ></lottie-player>
+                )}
+                {animes.length === 0 && (
+                    <lottie-player
+                        id="not-found"
+                        src="https://assets4.lottiefiles.com/packages/lf20_9mxblvp9.json"
+                        background="transparent"
+                        speed="0.7"
                         autoplay
                     ></lottie-player>
                 )}

@@ -25,6 +25,10 @@ body {
   color: $color-white;
   overflow-x: hidden;
 }
+.wrapper {
+  position: relative;
+  overflow-x: hidden;
+}
 
 
 %ball {
@@ -220,9 +224,12 @@ body {
     gap: 5rem;
     margin-block: 10rem 0;
 
-    #loading {
+    #loading, #not-found {
       margin-inline: auto;
       width: max(80%, 20rem);
+    }
+    #not-found {
+      width: max(70%, 20rem);
     }
   }
 
