@@ -24,3 +24,27 @@
 
   @return $string;
 }
+
+
+@mixin scrollbar($trackClr, $thumbClr) {
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: $thumbClr $trackClr;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: $trackClr;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: $thumbClr;
+    border-radius: 10px;
+    border: 4px solid $trackClr;
+  }
+}

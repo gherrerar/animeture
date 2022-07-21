@@ -13,6 +13,7 @@
   outline: none;
   scroll-behavior: smooth;
 }
+@include scrollbar($color-darkgray, rgba($color-white, .5));
 
 :root {
   font-family: $montserrat;
