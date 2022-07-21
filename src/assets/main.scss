@@ -43,6 +43,7 @@ body {
   inset: 0 0 auto 0;
   margin-inline: auto;
   display: inline-block;
+  width: max(100vw, 10rem);
   height: max(60vh, 10rem);
   aspect-ratio: 12 / 9;
   border-radius: 100%;
@@ -185,13 +186,19 @@ body {
         }
       }
       @media screen and (max-width: 838px) {
-        & {
-          $width: max(60%, 50rem);
-          width: $width;
-        }
         @keyframes shine {
           20%,100% {
             transform: translateX(70vw) skewX(-10deg);
+          }
+        }
+      }
+      @media screen and (max-width: 720px) {
+        &::after {
+          animation-duration: $transition-speed*15;
+        }
+        @keyframes shine {
+          20%,100% {
+            transform: translateX(100vw) skewX(-10deg);
           }
         }
       }

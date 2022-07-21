@@ -65,6 +65,7 @@ body {
   inset: 0 0 auto 0;
   margin-inline: auto;
   display: inline-block;
+  width: max(100vw, 10rem);
   height: max(60vh, 10rem);
   aspect-ratio: 12/9;
   border-radius: 100%;
@@ -220,9 +221,6 @@ body {
   }
 }
 @media screen and (max-width: 838px) {
-  .list .search-bar button {
-    width: max(60%, 50rem);
-  }
   @-webkit-keyframes shine {
     20%, 100% {
       transform: translateX(70vw) skewX(-10deg);
@@ -231,6 +229,22 @@ body {
   @keyframes shine {
     20%, 100% {
       transform: translateX(70vw) skewX(-10deg);
+    }
+  }
+}
+@media screen and (max-width: 720px) {
+  .list .search-bar button::after {
+    -webkit-animation-duration: 3000ms;
+            animation-duration: 3000ms;
+  }
+  @-webkit-keyframes shine {
+    20%, 100% {
+      transform: translateX(100vw) skewX(-10deg);
+    }
+  }
+  @keyframes shine {
+    20%, 100% {
+      transform: translateX(100vw) skewX(-10deg);
     }
   }
 }
