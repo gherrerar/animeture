@@ -1,0 +1,291 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+}
+
+body {
+  background-color: #0D0D0D;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.blurry-balls span {
+  position: absolute;
+  inset: 0 0 auto 0;
+  margin-inline: auto;
+  display: inline-block;
+  height: max(60vh, 10rem);
+  aspect-ratio: 12/9;
+  border-radius: 100%;
+  z-index: -1;
+}
+
+.blurry-balls span:nth-child(1) {
+  background-color: #332FD0;
+}
+
+.blurry-balls span:nth-child(2) {
+  background-color: #4900D4;
+}
+
+.blurry-balls span:nth-child(3) {
+  background-color: #63006C;
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  padding-block: 10vh;
+  padding-inline: max(20vw, 2rem);
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  color: #E9E9E9;
+  background-color: rgba(13, 13, 13, 0.44);
+  backdrop-filter: blur(15rem);
+  -webkit-backdrop-filter: blur(15rem);
+  background-image: url(images/oooscillate.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+.hero--title {
+  margin-bottom: 4rem;
+  font-family: "ZCOOL XiaoWei", serif;
+  font-size: clamp(4rem, 2.4210526316rem + 6.3157894737vw, 10rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-shadow: 0 0 3rem rgba(0, 0, 0, 0.5);
+}
+.hero--description {
+  font-size: clamp(1rem, 0.6052631579rem + 1.5789473684vw, 2.5rem);
+  font-weight: 400;
+}
+.hero > #scroll-down {
+  position: absolute;
+  inset: auto 0 4rem 0;
+  margin-inline: auto;
+  width: 5rem;
+  height: 6rem;
+}
+
+.list {
+  align-content: start;
+}
+.list .search-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 2rem 0;
+  width: min(70vw, 100vw - 4rem);
+  background-color: rgba(13, 13, 13, 0.9);
+  backdrop-filter: blur(0.2rem);
+  -webkit-backdrop-filter: blur(0.2rem);
+  z-index: 100;
+}
+.list .search-bar form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.list .search-bar ::-moz-placeholder {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+}
+.list .search-bar :-ms-input-placeholder {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+}
+.list .search-bar input, .list .search-bar ::placeholder, .list .search-bar button {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+}
+.list .search-bar button {
+  position: relative;
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  height: 6.3rem;
+  background-color: #403CFF;
+  border-radius: 100vmax;
+  cursor: pointer;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 200ms ease-in-out;
+}
+.list .search-bar button:active {
+  transform: scale(0.9);
+}
+.list .search-bar button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: translateX(-100%) skewX(-10deg);
+  z-index: -1;
+  -webkit-animation: shine 2400ms linear infinite;
+          animation: shine 2400ms linear infinite;
+}
+@-webkit-keyframes shine {
+  20%, 100% {
+    transform: translateX(400%) skewX(-10deg);
+  }
+}
+@keyframes shine {
+  20%, 100% {
+    transform: translateX(400%) skewX(-10deg);
+  }
+}
+@media screen and (max-width: 1006px) {
+  .list .search-bar button {
+    width: max(60%, 50rem);
+  }
+  .list .search-bar button::after {
+    width: 5rem;
+  }
+  @-webkit-keyframes shine {
+    20%, 100% {
+      transform: translateX(60vw) skewX(-10deg);
+    }
+  }
+  @keyframes shine {
+    20%, 100% {
+      transform: translateX(60vw) skewX(-10deg);
+    }
+  }
+}
+@media screen and (max-width: 838px) {
+  .list .search-bar button {
+    width: max(60%, 50rem);
+  }
+  @-webkit-keyframes shine {
+    20%, 100% {
+      transform: translateX(70vw) skewX(-10deg);
+    }
+  }
+  @keyframes shine {
+    20%, 100% {
+      transform: translateX(70vw) skewX(-10deg);
+    }
+  }
+}
+.list .search-bar--input {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 3rem;
+  width: max(60%, 50rem);
+  border: 2px solid #403CFF;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 0 #403CFF;
+  transition: box-shadow 200ms ease-in-out;
+}
+.list .search-bar--input:focus-within {
+  box-shadow: 0 0 0 4px #403CFF;
+}
+.list .search-bar--input input {
+  flex: 1;
+  padding-block: 1rem;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  caret-color: #403CFF;
+}
+.list .search-bar--input ::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.list .search-bar--input :-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.list .search-bar--input ::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.list .list-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem;
+  margin-block: 10rem 0;
+}
+.list .list-view #loading {
+  margin-inline: auto;
+  width: max(80%, 20rem);
+}
+.list .anime-shadow {
+  position: absolute;
+  inset: 0;
+  margin-inline: auto;
+  width: 50%;
+  height: 90%;
+  border-radius: 2rem;
+  filter: blur(3rem);
+  z-index: -1;
+}
+.list .anime-cell {
+  position: relative;
+  width: 18rem;
+  transition: transform 400ms ease-in-out;
+}
+.list .anime-cell:hover {
+  transform: scale(1.2);
+}
+.list .anime-cell--image {
+  width: 18rem;
+  aspect-ratio: 2/3;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+.list .anime-cell--score {
+  position: absolute;
+  inset: 2rem auto auto -2rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Work Sans", sans-serif;
+  font-size: 2rem;
+  color: #FFC700;
+  border-radius: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(0.2rem);
+  -webkit-backdrop-filter: blur(0.2rem);
+}
+.list .anime-cell--title {
+  margin-top: 1rem;
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+  font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 15%, rgb(0, 0, 0) 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 15%, rgb(0, 0, 0) 85%, transparent 100%);
+}
+.list .anime-cell--text {
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: right 1000ms ease-in-out;
+}/*# sourceMappingURL=main.css.map */
