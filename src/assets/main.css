@@ -30,6 +30,21 @@
   border: 4px solid #0D0D0D;
 }
 
+::-moz-selection {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+}
+
+::selection {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+}
+
+::-moz-selection {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+}
+
 :root {
   font-family: "Montserrat", sans-serif;
   font-size: 10px;
@@ -38,12 +53,11 @@
 body {
   background-color: #0D0D0D;
   color: #fff;
-  overflow-x: hidden;
 }
 
 .wrapper {
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .blurry-balls span {
@@ -78,6 +92,7 @@ body {
 }
 
 .hero {
+  position: relative;
   text-align: center;
   color: #E9E9E9;
   background-color: rgba(13, 13, 13, 0.44);
@@ -113,15 +128,19 @@ body {
   align-content: start;
 }
 .list .search-bar {
-  position: -webkit-sticky;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   padding: 2rem 0;
-  width: min(70vw, 100vw - 4rem);
+  width: min(75vw, 100vw - 4rem);
   background-color: rgba(13, 13, 13, 0.9);
   backdrop-filter: blur(0.2rem);
   -webkit-backdrop-filter: blur(0.2rem);
   z-index: 100;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .list .search-bar form {
   display: flex;
@@ -260,6 +279,12 @@ body {
 .list .list-view #not-found {
   width: max(70%, 20rem);
 }
+.list .list-view img {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 .list .anime-shadow {
   position: absolute;
   inset: 0;
@@ -300,6 +325,10 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(0.2rem);
   -webkit-backdrop-filter: blur(0.2rem);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .list .anime-cell--title {
   margin-top: 1rem;
