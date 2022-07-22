@@ -59,6 +59,11 @@ body {
   position: relative;
   overflow-x: clip;
 }
+@supports not (overflow-x: clip) {
+  .wrapper {
+    overflow-x: hidden;
+  }
+}
 
 .blurry-balls span {
   position: absolute;

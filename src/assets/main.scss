@@ -35,6 +35,12 @@ body {
 .wrapper {
   position: relative;
   overflow-x: clip;
+
+  @supports not (overflow-x: clip) {
+    & {
+      overflow-x: hidden;
+    }
+  }
 }
 
 
