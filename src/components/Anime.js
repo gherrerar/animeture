@@ -41,7 +41,7 @@ export default ({ title, srcImg, score }) => {
                 <p
                     className="anime-cell--text"
                     ref={componentRef}
-                    style={{ right: `${translate}px` }}
+                    style={{ transform: `translate3d(-${translate}px, 0px, 0px)` }}
                 >
                     {title}
                 </p>

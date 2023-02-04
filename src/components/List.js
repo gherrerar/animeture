@@ -53,7 +53,7 @@ export default () => {
                         autoplay
                     ></lottie-player>
                 )}
-                {animes.length === 0 && (
+                {(input !== "" && animes.length === 0) && (
                     <lottie-player
                         id="not-found"
                         src="https://assets4.lottiefiles.com/packages/lf20_9mxblvp9.json"

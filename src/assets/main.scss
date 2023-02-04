@@ -15,12 +15,8 @@
 }
 @include scrollbar($color-darkgray, rgba($color-white, .5));
 ::selection {
-  background-color: rgba($color-white, .5);
-  color: black;
-}
-::-moz-selection {
-  background-color: rgba($color-white, .5);
-  color: black;
+  background-color: rgba($color-purple, .5);
+  color: $color-white;
 }
 
 :root {
@@ -74,6 +70,42 @@ body {
   min-height: 100vh;
 }
 
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding-block: 5vh;
+  margin-inline: max(15vw, 2rem);
+  border-top: solid .05rem rgba($color-white, .2);
+
+  p {
+    // font-size: 1.5rem;
+    font-size: clamp(1rem, 0.8806451612903226rem + 0.5161290322580645vw, 1.5rem);
+    color: $color-gray;
+  }
+
+  .social {
+    display: flex;
+    gap: 2rem;
+
+    img {
+      width: 3rem;
+    }
+  }
+
+  @media screen and (max-width: 486px) {
+    & {
+      justify-content: center;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}
+
 // Hero Section
 .hero {
   position: relative;
@@ -109,21 +141,24 @@ body {
     position: absolute;
     inset: auto 0 4rem 0;
     margin-inline: auto;
-    width: 5rem;
+    // width: 5rem;
+    width: clamp(2rem, 8vw, 5rem);
     height: 6rem;  
   }
 }
 
-//List Section
+// List Section
 .list {
   align-content: start;
+  padding-bottom: 15vh;
 
   .search-bar {
     position: sticky;
     position: -webkit-sticky;
     top: -1px;
     padding: 2rem 0;
-    width: min(75vw, 100vw - 4rem);
+    padding-inline: clamp(7rem, 20vw, 20rem);
+    width: 100vw;
     background-color: rgba($color-darkgray, .9);
     backdrop-filter: blur(.2rem);
     -webkit-backdrop-filter: blur(.2rem);
@@ -169,7 +204,6 @@ body {
         transform: translateX(-100%) skewX(-10deg);
         z-index: -1;
         animation: shine $transition-speed*12 linear infinite;
-
       }
       
       @keyframes shine {
@@ -228,13 +262,22 @@ body {
       input {
         flex: 1;
         padding-block: 1rem;
+        width: 100%;
         font-size: 1.5rem;
         color: rgba($color-white, .8);
         background: transparent;
         caret-color: $color-purple;
+        text-overflow: ellipsis;
       }
       ::placeholder {
         color: rgba($color-white, .8);
+      }
+
+      @media screen and (max-width: 455px) {
+        & {
+          width: 100%;
+          // overflow: hidden;
+        }
       }
     }
   }
@@ -246,13 +289,15 @@ body {
     justify-content: center;
     gap: 5rem;
     margin-block: 10rem 0;
+    margin-inline: auto;
+    width: min(75vw, 100vw - 4rem);
 
     #loading, #not-found {
       margin-inline: auto;
-      width: max(80%, 20rem);
+      width: clamp(12rem, 70%, 50rem);
     }
     #not-found {
-      width: max(70%, 20rem);
+      width: clamp(9rem, 55%, 35rem);
     }
 
     img {
@@ -276,8 +321,10 @@ body {
     width: $width;
     transition: transform $transition-speed*2 ease-in-out;
 
-    &:hover {
-      transform: scale(1.2);
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.2);
+      }
     }
 
     &--image {
@@ -316,7 +363,7 @@ body {
     &--text {
       position: relative;
       width: fit-content;
-      transition: right $transition-speed*5 ease-in-out;
+      transition: transform $transition-speed*5 ease-in-out;
     }
   }
 }

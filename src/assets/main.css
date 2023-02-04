@@ -31,18 +31,13 @@
 }
 
 ::-moz-selection {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
+  background-color: rgba(64, 60, 255, 0.5);
+  color: #fff;
 }
 
 ::selection {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
-}
-
-::-moz-selection {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
+  background-color: rgba(64, 60, 255, 0.5);
+  color: #fff;
 }
 
 :root {
@@ -97,6 +92,36 @@ body {
   min-height: 100vh;
 }
 
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding-block: 5vh;
+  margin-inline: max(15vw, 2rem);
+  border-top: solid 0.05rem rgba(255, 255, 255, 0.2);
+}
+.footer p {
+  font-size: clamp(1rem, 0.8806451613rem + 0.5161290323vw, 1.5rem);
+  color: #E9E9E9;
+}
+.footer .social {
+  display: flex;
+  gap: 2rem;
+}
+.footer .social img {
+  width: 3rem;
+}
+@media screen and (max-width: 486px) {
+  .footer {
+    justify-content: center;
+  }
+  .footer p {
+    text-align: center;
+  }
+}
+
 .hero {
   position: relative;
   text-align: center;
@@ -126,19 +151,21 @@ body {
   position: absolute;
   inset: auto 0 4rem 0;
   margin-inline: auto;
-  width: 5rem;
+  width: clamp(2rem, 8vw, 5rem);
   height: 6rem;
 }
 
 .list {
   align-content: start;
+  padding-bottom: 15vh;
 }
 .list .search-bar {
   position: sticky;
   position: -webkit-sticky;
   top: -1px;
   padding: 2rem 0;
-  width: min(75vw, 100vw - 4rem);
+  padding-inline: clamp(7rem, 20vw, 20rem);
+  width: 100vw;
   background-color: rgba(13, 13, 13, 0.9);
   backdrop-filter: blur(0.2rem);
   -webkit-backdrop-filter: blur(0.2rem);
@@ -270,10 +297,12 @@ body {
 .list .search-bar--input input {
   flex: 1;
   padding-block: 1rem;
+  width: 100%;
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.8);
   background: transparent;
   caret-color: #403CFF;
+  text-overflow: ellipsis;
 }
 .list .search-bar--input ::-moz-placeholder {
   color: rgba(255, 255, 255, 0.8);
@@ -284,19 +313,26 @@ body {
 .list .search-bar--input ::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
+@media screen and (max-width: 455px) {
+  .list .search-bar--input {
+    width: 100%;
+  }
+}
 .list .list-view {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 5rem;
   margin-block: 10rem 0;
+  margin-inline: auto;
+  width: min(75vw, 100vw - 4rem);
 }
 .list .list-view #loading, .list .list-view #not-found {
   margin-inline: auto;
-  width: max(80%, 20rem);
+  width: clamp(12rem, 70%, 50rem);
 }
 .list .list-view #not-found {
-  width: max(70%, 20rem);
+  width: clamp(9rem, 55%, 35rem);
 }
 .list .list-view img {
   -webkit-user-select: none;
@@ -319,8 +355,10 @@ body {
   width: 18rem;
   transition: transform 400ms ease-in-out;
 }
-.list .anime-cell:hover {
-  transform: scale(1.2);
+@media (hover: hover) {
+  .list .anime-cell:hover {
+    transform: scale(1.2);
+  }
 }
 .list .anime-cell--image {
   width: 18rem;
@@ -364,5 +402,5 @@ body {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  transition: right 1000ms ease-in-out;
+  transition: transform 1000ms ease-in-out;
 }/*# sourceMappingURL=main.css.map */
