@@ -1,8 +1,24 @@
-import { useRef, useState } from "react";
-import icon from "../assets/images/star.svg";
-import useDimensions from "../hooks/useDimensions";
+import { AnimatePresence, motion } from "framer-motion";
 
-export default ({ title, srcImg, score }) => {
+import { useRef, useState } from "react";
+import star from "../assets/images/star.svg";
+import useDimensions from "../hooks/useDimensions";
+import Modal from "./Modal";
+
+export default ({
+    cellId,
+    title,
+    type,
+    srcImg,
+    score,
+    synop,
+    year,
+    studios,
+    numbEps,
+    genres,
+    link,
+}) => {
+    // Text swipe animation
     const componentRef = useRef();
     const { width: titleWdth, height } = useDimensions(componentRef);
     const [translate, setTranslate] = useState(0);
@@ -18,34 +34,68 @@ export default ({ title, srcImg, score }) => {
         setTranslate(0);
     }
 
+    // Modal
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleModal() {
+        setIsOpen((prev) => !prev);
+    }
+
     return (
-        <div
-            className="anime-cell"
-            onMouseOver={animateText}
-            onMouseOut={returnText}
-        >
-            <img className="anime-shadow" src={srcImg} alt="" />
-            <img
-                className="anime-cell--image"
-                src={srcImg}
-                loading="lazy"
-                alt={title}
-            />
-            {score != null && (
-                <div className="anime-cell--score">
-                    <img src={icon} />
-                    <span>{score}</span>
+        <>
+            <div
+                className="anime-cell"
+                onMouseOver={animateText}
+                onMouseOut={returnText}
+                onClick={toggleModal}
+            >
+                <img className="anime-shadow" src={srcImg} alt="" />
+                <motion.img
+                    className="anime-cell--image"
+                    src={srcImg}
+                    loading="lazy"
+                    alt={title}
+                    layoutId={cellId + "_img"}
+                />
+                {score !== null && (
+                    <motion.div
+                        className="anime-cell--score"
+                        layoutId={cellId + "_scr"}
+                    >
+                        <img src={star} />
+                        <span>{score}</span>
+                    </motion.div>
+                )}
+                <div className="anime-cell--title">
+                    <p
+                        className="anime-cell--text"
+                        ref={componentRef}
+                        style={{
+                            transform: `translate3d(-${translate}px, 0px, 0px)`,
+                        }}
+                    >
+                        {title}
+                    </p>
                 </div>
-            )}
-            <div className="anime-cell--title">
-                <p
-                    className="anime-cell--text"
-                    ref={componentRef}
-                    style={{ transform: `translate3d(-${translate}px, 0px, 0px)` }}
-                >
-                    {title}
-                </p>
             </div>
-        </div>
+            <AnimatePresence>
+                {isOpen && (
+                    <Modal
+                        handleClose={toggleModal}
+                        cellId={cellId}
+                        title={title}
+                        type={type}
+                        srcImg={srcImg}
+                        score={score}
+                        synop={synop}
+                        year={year}
+                        studios={studios}
+                        numbEps={numbEps}
+                        genres={genres}
+                        link={link}
+                    />
+                )}
+            </AnimatePresence>
+        </>
     );
 };

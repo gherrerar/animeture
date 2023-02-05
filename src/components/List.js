@@ -53,7 +53,7 @@ export default () => {
                         autoplay
                     ></lottie-player>
                 )}
-                {(input !== "" && animes.length === 0) && (
+                {input !== "" && animes.length === 0 && (
                     <lottie-player
                         id="not-found"
                         src="https://assets4.lottiefiles.com/packages/lf20_9mxblvp9.json"
@@ -66,9 +66,21 @@ export default () => {
                     return (
                         <Anime
                             key={item.mal_id}
+                            cellId={item.mal_id}
                             title={item.title}
+                            type={item.type}
                             srcImg={item.images.jpg.large_image_url}
                             score={item.score}
+                            synop={item.synopsis ?? 'Nenhuma sinopse disponível.'}
+                            year={item.aired.prop.from.year}
+                            studios={item.studios.length !== 0 && item.studios[0].name}
+                            numbEps={item.episodes}
+                            genres={[
+                                ...item.genres,
+                                ...item.themes,
+                                ...item.demographics,
+                            ]}
+                            link={item.url}
                         />
                     );
                 })}

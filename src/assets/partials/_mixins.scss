@@ -40,6 +40,7 @@
 
   *::-webkit-scrollbar-track {
     background: $trackClr;
+    border-radius: 10px;
   }
 
   *::-webkit-scrollbar-thumb {
