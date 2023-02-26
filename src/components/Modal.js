@@ -58,7 +58,7 @@ export default ({
                                 className="modal--score"
                                 layoutId={cellId + "_scr"}
                             >
-                                <img src={star} />
+                                <img src={star} alt="" />
                                 <span>{score}</span>
                             </motion.div>
                         )}
@@ -73,14 +73,14 @@ export default ({
                     </div>
 
                     <a className="modal--link" href={link} target="_blank">
-                        <img src={extLink} />
+                        <img src={extLink} alt="" />
                         <div data-text="MyAnimeList">
                             <span>MyAnimeList</span>
                         </div>
                     </a>
                 </div>
                 <button onClick={handleClose} title={"Fechar"}>
-                    <img src={close} />
+                    <img src={close} alt="" />
                 </button>
             </motion.div>
         </Backdrop>

@@ -1,5 +1,6 @@
 import "../assets/main.css";
 import * as LottiePlayer from "@lottiefiles/lottie-player";
+import LottieIcon from "./LottieIcon";
 
 export default () => {
     return (
@@ -15,7 +16,7 @@ export default () => {
                     Explore os seus animes favoritos em um só lugar
                 </h2>
                 <a href="#list" id="scroll-down">
-                    <lottie-player
+                    <LottieIcon
                         src="https://assets10.lottiefiles.com/packages/lf20_zgtlnwqa.json"
                         background="transparent"
                         speed="1"

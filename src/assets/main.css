@@ -100,18 +100,34 @@ body {
   -webkit-backdrop-filter: blur(0.2rem);
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
 .tag {
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: -moz-fit-content;
+  width: fit-content;
   font-family: "Work Sans", sans-serif;
   font-weight: 400;
   font-size: 1.4rem;
   background-color: rgba(13, 13, 13, 0.5);
   border: solid 0.05rem rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
+}
+.tag > span {
+  color: rgba(255, 255, 255, 0.6);
+}
+.tag > span::after {
+  content: ":";
+}
+.tag > button {
+  margin-left: 0.5rem;
+  display: flex;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .container {
@@ -186,7 +202,7 @@ body {
 }
 
 .list {
-  align-content: start;
+  align-content: flex-start;
   padding-bottom: 15vh;
 }
 .list .search-bar {
@@ -194,16 +210,20 @@ body {
   position: -webkit-sticky;
   top: -1px;
   padding: 2rem 0;
-  padding-inline: clamp(7rem, 20vw, 20rem);
+  padding-inline: clamp(7rem, 20vw, 45rem);
   width: 100vw;
-  background-color: rgba(13, 13, 13, 0.9);
+  background-color: rgba(13, 13, 13, 0.91);
   backdrop-filter: blur(0.2rem);
   -webkit-backdrop-filter: blur(0.2rem);
   z-index: 100;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
+}
+@media screen and (max-width: 570px) {
+  .list .search-bar {
+    padding-inline: 2rem;
+  }
 }
 .list .search-bar form {
   display: flex;
@@ -216,15 +236,11 @@ body {
   font-family: "Montserrat", sans-serif;
   border: none;
 }
-.list .search-bar :-ms-input-placeholder {
-  font-family: "Montserrat", sans-serif;
-  border: none;
-}
 .list .search-bar input, .list .search-bar ::placeholder, .list .search-bar button {
   font-family: "Montserrat", sans-serif;
   border: none;
 }
-.list .search-bar button {
+.list .search-bar--button {
   position: relative;
   padding: 1.5rem 3rem;
   font-size: 1.5rem;
@@ -238,10 +254,10 @@ body {
   overflow: hidden;
   transition: transform 200ms ease-in-out;
 }
-.list .search-bar button:active {
+.list .search-bar--button:active {
   transform: scale(0.9);
 }
-.list .search-bar button::after {
+.list .search-bar--button::after {
   content: "";
   position: absolute;
   top: 0;
@@ -251,13 +267,7 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
   transform: translateX(-100%) skewX(-10deg);
   z-index: -1;
-  -webkit-animation: shine 2400ms linear infinite;
-          animation: shine 2400ms linear infinite;
-}
-@-webkit-keyframes shine {
-  20%, 100% {
-    transform: translateX(400%) skewX(-10deg);
-  }
+  animation: shine 2400ms linear infinite;
 }
 @keyframes shine {
   20%, 100% {
@@ -265,29 +275,19 @@ body {
   }
 }
 @media screen and (max-width: 1006px) {
-  .list .search-bar button {
-    width: max(60%, 50rem);
+  .list .search-bar--button {
+    width: max(100%, 50rem);
   }
-  .list .search-bar button::after {
+  .list .search-bar--button::after {
     width: 5rem;
-  }
-  @-webkit-keyframes shine {
-    20%, 100% {
-      transform: translateX(60vw) skewX(-10deg);
-    }
   }
   @keyframes shine {
     20%, 100% {
-      transform: translateX(60vw) skewX(-10deg);
+      transform: translateX(65vw) skewX(-10deg);
     }
   }
 }
 @media screen and (max-width: 838px) {
-  @-webkit-keyframes shine {
-    20%, 100% {
-      transform: translateX(70vw) skewX(-10deg);
-    }
-  }
   @keyframes shine {
     20%, 100% {
       transform: translateX(70vw) skewX(-10deg);
@@ -295,14 +295,8 @@ body {
   }
 }
 @media screen and (max-width: 720px) {
-  .list .search-bar button::after {
-    -webkit-animation-duration: 3000ms;
-            animation-duration: 3000ms;
-  }
-  @-webkit-keyframes shine {
-    20%, 100% {
-      transform: translateX(100vw) skewX(-10deg);
-    }
+  .list .search-bar--button::after {
+    animation-duration: 3000ms;
   }
   @keyframes shine {
     20%, 100% {
@@ -313,6 +307,7 @@ body {
 .list .search-bar--input {
   display: flex;
   align-items: center;
+  flex: 1;
   gap: 1rem;
   padding: 1rem 3rem;
   width: max(60%, 50rem);
@@ -334,10 +329,12 @@ body {
   caret-color: #403CFF;
   text-overflow: ellipsis;
 }
-.list .search-bar--input ::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.8);
+.list .search-bar--input input[type=number]::-webkit-inner-spin-button,
+.list .search-bar--input input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-.list .search-bar--input :-ms-input-placeholder {
+.list .search-bar--input ::-moz-placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
 .list .search-bar--input ::placeholder {
@@ -347,6 +344,69 @@ body {
   .list .search-bar--input {
     width: 100%;
   }
+}
+.list .search-bar--input span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.list .search-bar--input span::after {
+  content: ":";
+}
+.list .search-bar--input button {
+  display: flex;
+  background-color: transparent;
+  box-shadow: 0 0 0 10px transparent;
+  border-radius: 100vmax;
+  cursor: pointer;
+  transition: box-shadow 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+.list .search-bar--input button:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.06);
+}
+.list .search-bar--expandable {
+  overflow: hidden;
+}
+.list .search-bar--bookmarks {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.list .search-bar--bookmarks > button {
+  padding: 2rem 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.5rem;
+  color: #E9E9E9;
+  background-color: transparent;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+.list .search-bar--bookmarks > button:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+@media screen and (max-width: 937px) {
+  .list .search-bar--bookmarks > button {
+    flex: 1;
+    justify-content: center;
+  }
+  .list .search-bar--bookmarks > button > span {
+    display: none;
+  }
+}
+.list .search-bar--tags {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: solid 0.05rem rgba(255, 255, 255, 0.2);
 }
 .list .list-view {
   display: flex;
@@ -367,7 +427,6 @@ body {
 .list .list-view img {
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .list .anime-shadow {
@@ -414,7 +473,6 @@ body {
 }
 .list .anime-cell--text {
   position: relative;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   transition: transform 1000ms ease-in-out;
@@ -475,7 +533,6 @@ body {
   font-weight: 600;
 }
 .modal--score {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -509,7 +566,6 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   font-size: 1.6rem;

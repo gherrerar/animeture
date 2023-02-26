@@ -20,7 +20,7 @@ export default ({
 }) => {
     // Text swipe animation
     const componentRef = useRef();
-    const { width: titleWdth, height } = useDimensions(componentRef);
+    const { width: titleWdth } = useDimensions(componentRef);
     const [translate, setTranslate] = useState(0);
 
     function animateText(e) {

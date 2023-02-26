@@ -12,14 +12,14 @@ export default () => {
                     target="_blank"
                     title="GitHub"
                 >
-                    <img src={github} />
+                    <img src={github} alt="GitHub" />
                 </a>
                 <a
-                    href="https://www.linkedin.com/in/gabriel-herrera-rodrigues-b915aa210/"
+                    href="https://www.linkedin.com/in/gherrerar/"
                     target="_blank"
                     title="LinkedIn"
                 >
-                    <img src={linkedin} />
+                    <img src={linkedin} alt="LinkedIn" />
                 </a>
             </div>
         </div>

@@ -80,12 +80,30 @@ body {
 
 .tag {
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  width: fit-content;
   font-family: $work-sans;
   font-weight: 400;
   font-size: 1.4rem;
   background-color: rgba($color-darkgray, .5);
   border: solid .05rem rgba($color-white, .1);
   border-radius: 1.5rem;
+
+  > span {
+    color: rgba($color-white, .6);
+
+    &::after {
+      content: ':';
+    }
+  }
+  > button {
+    margin-left: .5rem;
+    display: flex;
+    background-color: transparent;
+    cursor: pointer;
+  }
 }
 
 .container {
@@ -108,6 +126,7 @@ body {
 
   p {
     // font-size: 1.5rem;
+    // 370px - 1920px
     font-size: clamp(1rem, 0.8806451612903226rem + 0.5161290322580645vw, 1.5rem);
     color: $color-gray;
   }
@@ -175,7 +194,7 @@ body {
 
 // List Section
 .list {
-  align-content: start;
+  align-content: flex-start;
   padding-bottom: 15vh;
 
   .search-bar {
@@ -183,13 +202,19 @@ body {
     position: -webkit-sticky;
     top: -1px;
     padding: 2rem 0;
-    padding-inline: clamp(7rem, 20vw, 20rem);
+    padding-inline: clamp(7rem, 20vw, 45rem);
     width: 100vw;
-    background-color: rgba($color-darkgray, .9);
+    background-color: rgba($color-darkgray, .91);
     backdrop-filter: blur(.2rem);
     -webkit-backdrop-filter: blur(.2rem);
     z-index: 100;
     user-select: none;
+
+    @media screen and (max-width: 570px) {
+      & {
+        padding-inline: 2rem;
+      }
+    }
 
     form {
       display: flex;
@@ -202,7 +227,7 @@ body {
       font-family: $montserrat;
       border: none;
     }
-    button {
+    &--button {
       position: relative;
       padding: 1.5rem 3rem;
       font-size: 1.5rem;
@@ -240,14 +265,14 @@ body {
       
       @media screen and (max-width: 1006px) {
         & {
-          width: max(60%, 50rem);
+          width: max(100%, 50rem);
         }
         &::after {
           width: 5rem;
         }
         @keyframes shine {
           20%,100% {
-            transform: translateX(60vw) skewX(-10deg);
+            transform: translateX(65vw) skewX(-10deg);
           }
         }
       }
@@ -273,6 +298,7 @@ body {
     &--input {
       display: flex;
       align-items: center;
+      flex: 1;
       gap: 1rem;
       padding: 1rem 3rem;
       width: max(60%, 50rem);
@@ -295,6 +321,11 @@ body {
         caret-color: $color-purple;
         text-overflow: ellipsis;
       }
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
       ::placeholder {
         color: rgba($color-white, .8);
       }
@@ -305,6 +336,77 @@ body {
           // overflow: hidden;
         }
       }
+
+      span {
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        &::after {
+          content: ':';
+        }
+      }
+      button {
+        display: flex;
+        background-color: transparent;
+        box-shadow: 0 0 0 10px transparent;
+        border-radius: 100vmax;
+        cursor: pointer;
+        transition: box-shadow $transition-speed ease-in-out, background-color $transition-speed ease-in-out;
+
+        &:hover {
+          background-color: rgba($color-white, .06);
+          box-shadow: 0 0 0 10px rgba($color-white, .06);
+        }
+      }
+    }
+
+    &--expandable {
+      overflow: hidden;
+    }
+    &--bookmarks {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      // flex-direction: column;
+
+      > button {
+        padding: 2rem 3.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .8rem;
+        font-family: $work-sans;
+        font-size: 1.5rem;
+        color: $color-gray;
+        background-color: transparent;
+        border-radius: 1.5rem;
+        cursor: pointer;
+        transition: background-color $transition-speed ease-in-out;
+        
+        &:hover {
+          background-color: rgba($color-white, .06);
+        }
+
+        @media screen and (max-width: 937px) {
+          & {
+            flex: 1;
+            justify-content: center;
+          }
+          > span {
+            display: none;
+          }
+        }
+      }
+    }
+    &--tags {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: solid .05rem rgba($color-white, .2);
     }
   }
 

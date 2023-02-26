@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
 export default (ref) => {
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0, top: 0, left: 0 });
 
     const getDimensions = () => ({
         width: ref.current.offsetWidth,
         height: ref.current.offsetHeight,
+        top: ref.current.offsetTop,
+        left: ref.current.offsetLeft,
     });
 
     useEffect(() => {
